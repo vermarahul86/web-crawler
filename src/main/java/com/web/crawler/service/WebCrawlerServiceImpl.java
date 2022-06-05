@@ -47,6 +47,7 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
             linkStack.push(url);
             BlockingDeque<Element> queue = new LinkedBlockingDeque();
             webCrawler.startCrawling(linkStack, queue);
+            /*start collecting all the movies from the elements identified.*/
             movieCollector.collectMovies(queue);
             return Boolean.TRUE;
         }

@@ -15,6 +15,7 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private int id;
 
     private String name;

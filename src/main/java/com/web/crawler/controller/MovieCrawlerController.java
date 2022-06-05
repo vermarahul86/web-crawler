@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-
+/**
+ * MovieCrawlerController offers following 3 operations.
+ * /crawler/start -> Start crawling.
+ * /crawler/status -> Status of crawled data.
+ * /crawler/movies -> Movies crawled so far.
+ * */
 @RestController
 @RequestMapping("/crawler")
 public class MovieCrawlerController  {

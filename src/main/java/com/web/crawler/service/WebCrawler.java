@@ -48,19 +48,23 @@ public class WebCrawler {
         if(linkStack.empty()) {
             return ;
         }
+        /*We always have one url to crawled and, we take it out for processing.*/
         Document document = webCrawlerClient.getDocument(linkStack.remove(0));
         if(null != document) {
+
             log.debug(document.html());
             Elements linksOnPage = document.select("a[href]");
             log.debug("Found {} links", linksOnPage.size());
+
             linksOnPage.forEach(element -> {
                 String href = element.attr("href");
                 String title = element.attr("title");
                 if(href.startsWith("/movie") && StringUtils.hasLength(title)) {
                     log.debug("Found  movie {}", element);
                     count.getAndIncrement();
-                    queue.push(element);
+                    queue.push(element); //Push the element to queue which holds movies details.
                 } else {
+                    /*We make entry to the stack for next iteration of parsing of new url identified.*/
                     if(!"/".equals(href) && !"#".equals(href) && !href.startsWith("http")) {
                         if(links.add(href)) {
                             linkStack.push( url + href);

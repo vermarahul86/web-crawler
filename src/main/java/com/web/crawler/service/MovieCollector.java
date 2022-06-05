@@ -14,7 +14,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.concurrent.BlockingDeque;
 
 @Component
@@ -30,7 +33,7 @@ public class MovieCollector {
     @Autowired
     private CrawlerStatusRepository crawlerStatusRepository;
 
-    //@Async("asyncExecutor")
+    @Async("asyncExecutor")
     public void collectMovies(BlockingDeque<Element> queue) throws InterruptedException, IOException {
         int count = 0;
         while (true) {
@@ -45,6 +48,10 @@ public class MovieCollector {
                     String movieImage =  img.attr("src");
                     String title = movieElement.attr("title");
                     Connection.Response response = Jsoup.connect(url + movieImage).ignoreContentType(true).execute();
+
+                    /*FileOutputStream outputStream = new FileOutputStream(new File("C://data//projects//working//files//"+title+".jpeg"));
+                    outputStream.write(response.bodyAsBytes());*/
+
                     Movie movie = new Movie(title, response.bodyAsBytes());
                     log.debug("Persisting movie {}", movie);
                     repository.save(movie);

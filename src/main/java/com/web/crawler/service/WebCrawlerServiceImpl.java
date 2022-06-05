@@ -41,7 +41,7 @@ public class WebCrawlerServiceImpl implements WebCrawlerService {
     @Override
     @Async
     public Boolean startCrawling() throws IOException, InterruptedException {
-        Optional<CrawlerStatus> result = crawlerStatusRepository.findById(0);
+        Optional<CrawlerStatus> result = crawlerStatusRepository.findById(0); //will always be one entry in this.
         if(!result.isPresent() || "FINISHED".equals(result.get().getStatus())){
             Stack<String> linkStack = new Stack<>();
             linkStack.push(url);

@@ -1,15 +1,19 @@
 # web-crawler
 
-Endpoints:
+Endpoints for all the possible operations:
 
-1. Start crawling : http://localhost:8080/crawler/start
-2. Get status of crawling : http://localhost:8080/crawler/status
-3. Fetch movies list : http://localhost:8080/crawler/movies
+1. Start crawling : http://localhost:{port}/crawler/start
+2. Get status of crawling : http://localhost:{port}/crawler/status
+3. Fetch movies list : http://localhost:{port}/crawler/movies
 
-docker build --build-arg JAR_FILE=build/libs/*.jar -t rahulverma86/webcrawler .
-docker login
-docker push
-docker-compose up
+** port -> port you define to run (if executed directly on the personal machine)
+** else if executed as docker image, then port you have mentioned in docker-compose.yml
+
+Steps to build docker image, push to remote repo and run the application.
+1. docker build --build-arg JAR_FILE=build/libs/*.jar -t {dockerHubId}/webcrawler .
+2. docker login
+3. docker push
+4. docker-compose up
 
 References:
 https://www.baeldung.com/dockerizing-spring-boot-application

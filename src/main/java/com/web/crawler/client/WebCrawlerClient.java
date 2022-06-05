@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
-
+/**
+ * WebCrawlerClient - This class is responsible for getting Initial Document of the website to be crawled.
+ * */
 @Repository
 @Slf4j
 public class WebCrawlerClient {

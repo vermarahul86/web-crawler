@@ -1,0 +1,15 @@
+version: '2'
+services:
+  webcrawler:
+    container_name: webcrawler
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rahulverma86/webcrawler:latest
+    ports:
+      - 18888:8080
+    networks:
+      - spring-cloud-network
+networks:
+  spring-cloud-network:
+    driver: bridge
